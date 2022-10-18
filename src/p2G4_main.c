@@ -500,13 +500,13 @@ static void prepare_rx(uint d){
   if ( rx_s.abort.abort_time < rx_a[d].scan_end ) {
     rx_a[d].scan_end = rx_s.abort.abort_time - 1;
   }
-  if (rx_s.bps % 1000000 != 0) {
+  if (rx_s.bps % 250000 != 0) {
     bs_trace_error_time_line("The device %u requested a reception with a rate "
                              "of %u bps, but only multiples of 1Mbps are "
                              "supported so far\n",
                              d, rx_s.bps);
   }
-  rx_a[d].bpus = rx_s.bps/1000000;
+  rx_a[d].bpus = rx_s.bps/250000;
 
   fq_add(rx_s.start_time, Rx_Search, d);
 }
